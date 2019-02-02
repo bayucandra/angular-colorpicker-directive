@@ -1,6 +1,6 @@
 {
   "name": "@biqdev/angularjs-colorpicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "AngularJS color picker directive. ( Originally from: https://github.com/Alberplz/angular-colorpicker-directive )",
   "main": "index.js",
   "scripts": {
