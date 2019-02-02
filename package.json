@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bayucandra/angular-colorpicker-directive.git"
+    "url": "git+https://github.com/bayucandra/angularjs-colorpicker.git"
   },
   "author": "bayu@biqdev.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bayucandra/angular-colorpicker-directive/issues"
+    "url": "https://github.com/bayucandra/angularjs-colorpicker/issues"
   },
-  "homepage": "https://github.com/bayucandra/angular-colorpicker-directive#readme"
+  "homepage": "https://github.com/bayucandra/angularjs-colorpicker#readme"
 }
