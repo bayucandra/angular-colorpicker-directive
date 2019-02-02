@@ -1,0 +1,19 @@
+{
+  "name": "@biqdev/angularjs-colorpicker",
+  "version": "1.0.0",
+  "description": "AngularJS color picker directive. ( Originally from: https://github.com/Alberplz/angular-colorpicker-directive )",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bayucandra/angular-colorpicker-directive.git"
+  },
+  "author": "bayu@biqdev.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bayucandra/angular-colorpicker-directive/issues"
+  },
+  "homepage": "https://github.com/bayucandra/angular-colorpicker-directive#readme"
+}
