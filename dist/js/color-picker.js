@@ -21,6 +21,7 @@
       return {
         restrict: 'A',
         scope: {colorPickerModel: '=', colorPickerOutputFormat: '='},
+
         controller: ['$scope', function ($scope) {
           $scope.show = false;
           $scope.sAndLMax = {};
@@ -36,6 +37,9 @@
           $scope.cancelButtonClass = '';
           $scope.showCancelButton = false;
           $scope.extraLargeClass = '';
+          $scope.hexOnly = false;
+          $scope.parentSelector = 'body';
+          $scope.colorPreset = [];
 
           if ($scope.colorPickerOutputFormat === 'rgba') {
             $scope.type = 1;
@@ -158,6 +162,7 @@
           }
 
         }],
+
         link: function (scope, element, attr) {
           var template, close = false, initialValue = '';
 
@@ -200,7 +205,15 @@
             element.val(scope.outputColor);
           }
 
-          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}">' +
+          if( attr.colorPickerHexOnly === 'true' ) {
+            scope.hexOnly = true;
+          }
+
+          if( attr.colorPickerParentSelector !== undefined && document.querySelector( attr.colorPickerParentSelector ) !== null ) {
+            scope.parentSelector = attr.colorPickerParentSelector;
+          }
+
+          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}" ng-class="{ \'color-picker--hex-only\' : hexOnly }">' +
             '   <div class="arrow arrow-' + attr.colorPickerPosition + '"></div>' +
             '   <div slider rg-x=1 rg-y=1 action="setSaturationAndBrightness(s, v, rgX, rgY)" class="saturation-lightness" ng-style="{\'background-color\':hueSliderColor}">' +
             '       <div class="cursor-sv" ng-style="{\'top\':sAndLSlider.top, \'left\':sAndLSlider.left}"></div>' +
@@ -235,7 +248,9 @@
             '   <button type="button" class="{{cancelButtonClass}}" ng-show="showCancelButton" ng-click="cancelColor()">Cancel</button>' +
             '</div>');
 
-          document.getElementsByTagName("body")[0].appendChild(template[0]);
+          document.querySelector( scope.parentSelector ).appendChild( template[0] );
+
+          // document.getElementsByTagName("body")[0].appendChild(template[0]);
           $compile(template)(scope);
 
           function updateFromString(string) {

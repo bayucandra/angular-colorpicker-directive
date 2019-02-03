@@ -20,7 +20,7 @@
     -khtml-border-radius: $radius;
 }
 
-.color-picker{
+.color-picker {
     margin-left: 10px;
     width: 232px;
     height: 290px;
@@ -242,3 +242,34 @@
 .color-picker-extra-large{
     height: 320px!important;
 }
+
+.color-picker {
+
+    &--hex-only {
+
+        .alpha {
+            display: none;
+        }//.alpha
+
+        .hue {
+            top: 155px;
+            height: 18px;
+        }//.hue
+
+        div.cursor {
+            height: 18px;
+            width: 18px;
+            border-radius: ( 18px / 2 );
+        }//div.cursor
+
+        .hex-text {
+            left: 35px;
+        }//.hex-text
+
+        .type-policy {
+            display: none;
+        }//.type-policy
+
+    }//&--hex-only
+
+}//.color-picker

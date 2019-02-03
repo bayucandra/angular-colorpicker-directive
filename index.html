@@ -3,7 +3,7 @@
     <head>
         <title>Angular Color Picker Directive</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">               
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="dist/css/color-picker.css" />
         <style>
@@ -16,7 +16,7 @@
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
         <script src="dist/js/color-picker.min.js"></script>
-        <script>var app = angular.module('app', ['colorpicker']);</script>  
+        <script>var app = angular.module('app', ['colorpicker']);</script>
         <script>
             app.controller('AppCtrl', ['$scope', function ($scope) {
                 $scope.var3 = '#ff2e00';
@@ -33,14 +33,14 @@
             <h4>AngularJS color picker directive with no dependencies.</h4>
             <h4><b>by Alberto Pujante</b></h4>
             <a class="btn btn-primary btn-lg" href="https://github.com/Alberplz/angular-colorpicker-directive">View on Github</a>
-            
-            <div class="row">   
+
+            <div class="row">
                 <hr>
                 <div class="col-md-5">
-                    <input color-picker                            
-                           color-picker-model="var"/>                    
+                    <input color-picker
+                           color-picker-model="var"/>
                 </div>
-                <div class="col-md-7">  
+                <div class="col-md-7">
                     <p>Basic usage:</p>
                     <pre>
 &lt;input color-picker 
@@ -48,7 +48,49 @@ color-picker-model="var"/&gt;
                      </pre>
                 </div>
             </div>
-            
+
+
+          <hr>
+          <div class="row">
+            <div class="col-md-5">
+              <input color-picker
+                     color-picker-model="var"
+                     color-picker-hex-only="true"
+                     ng-style="{background:var}"/>
+            </div>
+            <div class="col-md-7">
+              <p>Hex only:</p>
+              <pre>
+&lt;input color-picker
+  color-picker-model="var"
+  color-picker-hex-only="true"
+  ng-style="{background:var}"/&gt;
+               </pre>
+            </div>
+          </div>
+
+
+          <hr>
+          <div class="row custom-parent">
+            <div class="col-md-5">
+              <input color-picker
+                     color-picker-model="var"
+                     color-picker-parent-selector=".custom-parent"
+                     ng-style="{background:var}"/>
+            </div>
+            <div class="col-md-7">
+              <p>Hex only:</p>
+              <pre>
+&lt;input color-picker
+  color-picker-model="var"
+  color-picker-parent-selector=".custom-parent"
+  ng-style="{background:var}"/&gt;
+               </pre>
+            </div>
+          </div>
+
+
+
             <hr>
             <div class="row">
                 <div class="col-md-5">
@@ -64,22 +106,22 @@ color-picker-model="var"
 ng-style="{background:var}"/&gt;
                      </pre>
                 </div>
-                
+
             </div>
-            
-            <div class="row">   
+
+            <div class="row">
                 <hr>
                 <div class="col-md-5">
-                    <input color-picker                            
+                    <input color-picker
                            color-picker-model="var3"
-                           color-picker-output-format="'rgba'"                           
+                           color-picker-output-format="'rgba'"
                            ng-style="{background: var3}"/><br><br>
-                     <input color-picker                            
+                     <input color-picker
                            color-picker-model="var4"
                            color-picker-output-format="'hsla'"
-                           ng-style="{background: var4}"/>                              
+                           ng-style="{background: var4}"/>
                 </div>
-                <div class="col-md-7">  
+                <div class="col-md-7">
                     <p>Output format:</p>
                     <pre>
 &lt;input color-picker 
@@ -89,11 +131,11 @@ ng-style="{background: var}"/&gt;
                      </pre>
                 </div>
             </div>
-            
+
             <hr>
             <div class="row">
                 <div class="col-md-5">
-                    <input color-picker 
+                    <input color-picker
                    color-picker-show-value="false"
                    color-picker-model="var5"
                    ng-style="{background: var5}"/>
@@ -107,12 +149,12 @@ color-picker-show-value="false"
 ng-style="{background:var}"/&gt;
                      </pre>
                 </div>
-                
+
             </div>
-            
+
             <hr>
             <div class="row">
-                <div class="col-md-5">                    
+                <div class="col-md-5">
                     <input color-picker
                    color-picker-model="var6"
                    color-picker-position="bottom"
@@ -126,12 +168,12 @@ color-picker-model="var"
 color-picker-position="bottom"
 ng-style="{background:var}"/&gt;
                      </pre>
-                </div>                
+                </div>
             </div>
-            
+
             <hr>
             <div class="row">
-                <div class="col-md-5">                    
+                <div class="col-md-5">
                     <input color-picker
                    color-picker-model="var7"
                    color-picker-fixed-position="true"
@@ -145,12 +187,12 @@ color-picker-model="var"
 color-picker-fixed-position="true"
 ng-style="{background:var}"/&gt;
                      </pre>
-                </div>                
+                </div>
             </div>
-            
+
             <hr>
             <div class="row">
-                <div class="col-md-5">                    
+                <div class="col-md-5">
                     <input color-picker
                    color-picker-model="var8"
                    color-picker-show-input-spinner="true"
@@ -168,19 +210,19 @@ color-picker-spinner-rgba-steps="5;5;5;0.1"
 color-picker-spinner-hsla-steps="5;5;5;0.1"
 ng-style="{background:var}"/&gt;
                      </pre>
-                </div>                
+                </div>
             </div>
-            
+
             <hr>
-            <div class="row">   
+            <div class="row">
                 <div class="col-md-5">
-                    <input color-picker                            
+                    <input color-picker
                            color-picker-model="var9"
                            color-picker-show-cancel-button="true"
                            color-picker-cancel-button-class="btn btn-default btn-xs"
-                           ng-style="{background: var9}"/>                    
+                           ng-style="{background: var9}"/>
                 </div>
-                <div class="col-md-7">  
+                <div class="col-md-7">
                     <p>Cancel button:</p>
                     <pre>
 &lt;input color-picker 
@@ -190,8 +232,8 @@ color-picker-cancel-button-class="btn btn-default btn-xs"
 ng-style="{background:var}"/&gt;
                      </pre>
                 </div>
-            </div>                        
-            
+            </div>
+
             <hr>
             <br>
             <div class="row">
@@ -220,8 +262,8 @@ ng-style="{background:var}"/&gt;
                                 <td>color-picker-output-format</td>
                                 <td>
                                     'rgba', 'hsla', <b>'hex'</b><br>
-                                    Don't forget single quotes. Notice that you can use a variable to control output format,<br> 
-                                    for example, to let users change output format from interface. 
+                                    Don't forget single quotes. Notice that you can use a variable to control output format,<br>
+                                    for example, to let users change output format from interface.
                                 </td>
                             </tr>
                             <tr>
@@ -267,7 +309,7 @@ ng-style="{background:var}"/&gt;
                                     Your custom class for cancel button.
                                 </td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -275,6 +317,6 @@ ng-style="{background:var}"/&gt;
             <hr>
             <footer class="footer">&copy; Alberto Pujante 2016 | <a href="https://github.com/Alberplz/angular-colorpicker-directive">Angular Color Picker Directive</a></footer>
             <br>
-        </div>        
+        </div>
     </body>
 </html>
