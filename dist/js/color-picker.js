@@ -240,7 +240,13 @@
 
           scope.colorPresetSelect = function( str ){
             scope.hexText = str;
+            scope.setColorFromHex( str );
             updateFromString( str );
+
+            if (attr.colorPickerShowValue === 'true') {
+              element.val(str);
+            }
+            scope.colorPickerModel = str;
             // if( (scope.$root.$$phase !== '$apply') && (scope.$root.$$phase !== '$digest') ) scope.$digest();
           };
 
@@ -294,8 +300,8 @@
             '   </div>' +
 
             '   <div class="footer-action">' +
-            '       <div class="reset-btn" ng-click="resetColor()">Reset</div>' +
-            '       <div class="save-btn" ng-click="save()">Simpan</div>' +
+            '       <div class="reset-btn widget-button-ripple" ng-click="resetColor()">Reset</div>' +
+            '       <div class="save-btn widget-button-ripple" ng-click="save()">Simpan</div>' +
             '   </div>' +
 
             '   <button type="button" class="{{cancelButtonClass}}" ng-show="showCancelButton" ng-click="cancelColor()">Cancel</button>' +
