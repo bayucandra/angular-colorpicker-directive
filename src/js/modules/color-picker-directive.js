@@ -24,7 +24,8 @@
           $scope.extraLargeClass = '';
           $scope.hexOnly = false;
           $scope.parentSelector = 'body';
-          $scope.colorPreset = [];
+          $scope.colorPresets = [];
+          $scope.hasColorPresets = false;
 
           if ($scope.colorPickerOutputFormat === 'rgba') {
             $scope.type = 1;
@@ -148,6 +149,8 @@
 
         }],
 
+
+
         link: function (scope, element, attr) {
           var template, close = false, initialValue = '';
 
@@ -198,11 +201,43 @@
             scope.parentSelector = attr.colorPickerParentSelector;
           }
 
-          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}" ng-class="{ \'color-picker--hex-only\' : hexOnly }">' +
+          if( attr.colorPickerColorPresets !== undefined ) {
+
+            var color_presets = [];
+
+            try {
+
+              color_presets = attr.colorPickerColorPresets.split( ',' );
+              for( var i=0; i<color_presets.length; i++ ) {
+                var color_preset = ColorHelper.trim( color_presets[i] );
+
+                if( ColorHelper.isHexValid( color_preset ) && scope.colorPresets.indexOf( color_preset ) === -1 ) {
+                  scope.colorPresets.push( color_preset );
+                }
+
+              }
+
+            } catch( e ) {
+              console.error('Error::attr.colorPickerColorPresets: ' + e.message);
+            }
+
+          }
+
+          scope.colorPresetSelect = function( str ){
+            scope.hexText = str;
+            updateFromString( str );
+            // if( (scope.$root.$$phase !== '$apply') && (scope.$root.$$phase !== '$digest') ) scope.$digest();
+          };
+
+          if( scope.colorPresets.length > 0 ) {scope.hasColorPresets = true;}
+
+          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}" ng-class="{ \'color-picker--hex-only\' : hexOnly, \'color-picker--has-color-presets\': hasColorPresets }">' +
             '   <div class="arrow arrow-' + attr.colorPickerPosition + '"></div>' +
+
             '   <div slider rg-x=1 rg-y=1 action="setSaturationAndBrightness(s, v, rgX, rgY)" class="saturation-lightness" ng-style="{\'background-color\':hueSliderColor}">' +
             '       <div class="cursor-sv" ng-style="{\'top\':sAndLSlider.top, \'left\':sAndLSlider.left}"></div>' +
             '   </div>' +
+
             '   <div slider rg-x=1 action="setHue(v, rg)" class="hue">' +
             '       <div class="cursor" ng-style="{\'left\':hueSlider.left}"></div>' +
             '   </div>' +
@@ -211,6 +246,8 @@
             '   </div>' +
             '   <div class="selected-color-background"></div>' +
             '   <div class="selected-color" ng-style="{\'background-color\':outputColor}"></div>' +
+
+
             '   <div ng-show="type==2" class="hsla-text">' +
             '       <input text type="number" pattern="[0-9]*" min="0" max="360" step="' + scope.hslaSteps.h + '" rg=360 action="setHue(v, rg)" ng-model="hslaText.h" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
             '       <input text type="number" pattern="[0-9]*" min="0" max="100" step="' + scope.hslaSteps.s + '" rg=100 action="setSaturation(v, rg)" ng-model="hslaText.s" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
@@ -218,6 +255,7 @@
             '       <input text type="number" pattern="[0-9]+([\.,][0-9]{1,2})?" min="0" max="1" step="' + scope.hslaSteps.a + '" rg=1 action="setAlpha(v, rg)" ng-model="hslaText.a" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
             '       <div>H</div><div>S</div><div>L</div><div>A</div>' +
             '   </div>' +
+
             '   <div ng-show="type==1" class="rgba-text">' +
             '       <input text type="number" pattern="[0-9]*" min="0" max="255" step="' + scope.rbgaSteps.r + '" rg=255 action="setR(v, rg)" ng-model="rgbaText.r" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
             '       <input text type="number" pattern="[0-9]*" min="0" max="255" step="' + scope.rbgaSteps.g + '" rg=255 action="setG(v, rg)" ng-model="rgbaText.g" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
@@ -225,11 +263,26 @@
             '       <input text type="number" pattern="[0-9]+([\.,][0-9]{1,2})?" min="0" max="1" step="' + scope.rbgaSteps.a + '" rg=1 action="setAlpha(v, rg)" ng-model="rgbaText.a" spinner="' + attr.colorPickerShowInputSpinner + '" />' +
             '       <div>R</div><div>G</div><div>B</div><div>A</div>' +
             '   </div>' +
+
             '   <div class="hex-text" ng-show="type==0">' +
             '       <input text type="text" action="setColorFromHex(string)" ng-model="hexText"/>' +
-            '       <div>HEX</div>' +
+            '       <div>Hex</div>' +
             '   </div>' +
+
             '   <div ng-click="typePolicy()" class="type-policy"></div>' +
+
+            '   <div class="color-presets" ng-if="hasColorPresets">' +
+            '     <div class="color-presets__title">Warna Global</div>' +
+            '     <div class="color-presets__picker-wrapper">' +
+            '       <div class="preset-picker" ng-repeat="preset in colorPresets" ng-class="{ \'is-last\': $last }" ng-style="{ \'background-color\': preset }" ng-click="colorPresetSelect( preset )"></div>' +
+            '     </div>' +
+            '   </div>' +
+
+            '   <div class="footer-action">' +
+            '       <div class="reset-btn" ng-click="resetColor()">Reset</div>' +
+            '       <div class="save-btn" ng-click="save()">Simpan</div>' +
+            '   </div>' +
+
             '   <button type="button" class="{{cancelButtonClass}}" ng-show="showCancelButton" ng-click="cancelColor()">Cancel</button>' +
             '</div>');
 
@@ -278,6 +331,15 @@
             updateFromString(scope.colorPickerModel);
             $document.off('mousedown', mousedown);
             angular.element(window).off('resize', resize);
+          };
+
+          scope.resetColor = function () {
+            scope.colorPickerModel = initialValue;
+            updateFromString(scope.colorPickerModel);
+          };
+
+          scope.save = function(){
+            scope.show = false;
           };
 
           element.on('click', open);

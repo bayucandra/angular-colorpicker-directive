@@ -79,12 +79,35 @@ color-picker-model="var"/&gt;
                      ng-style="{background:var}"/>
             </div>
             <div class="col-md-7">
-              <p>Hex only:</p>
+              <p>Custom parent:</p>
               <pre>
 &lt;input color-picker
   color-picker-model="var"
   color-picker-parent-selector=".custom-parent"
   ng-style="{background:var}"/&gt;
+               </pre>
+            </div>
+          </div>
+
+
+          <hr>
+          <div class="row custom-parent">
+            <div class="col-md-5">
+              <input color-picker
+                     color-picker-model="var"
+                     color-picker-color-presets="#F00, #DDD, #0000FF, #8013a3, #7788e2, #84e277, #e2c477, #ff0, #8b8b63"
+                     color-picker-hex-only="true"
+                     ng-style="{background:var}"/>
+            </div>
+            <div class="col-md-7">
+              <p>Color Presets:</p>
+              <pre>
+&lt;input color-picker
+  color-picker-model="var"
+  color-picker-color-presets="#F00, #DDD, #0000FF, sdf"
+  color-picker-hex-only="true"
+  color-picker-show-cancel-button="true"
+  ng-style="{background:var}"//&gt;
                </pre>
             </div>
           </div>

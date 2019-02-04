@@ -5,6 +5,7 @@
     .factory('ColorHelper', function () {
 
       return{
+
         hsla2hsva: function (hsla) {
           var h = Math.min(hsla.h, 1), s = Math.min(hsla.s, 1), l = Math.min(hsla.l, 1), a = Math.min(hsla.a, 1);
           if (l === 0) {
@@ -14,6 +15,7 @@
             return {h: h, s: 2 * (v - l) / v, v: v, a: a};
           }
         },
+
         hsva2hsla: function (hsva) {
           var h = hsva.h, s = hsva.s, v = hsva.v, a = hsva.a;
           if (v === 0) {
@@ -25,6 +27,7 @@
             return {h: h, s: v * s / (1 - Math.abs(2 * l - 1)), l: l, a: a};
           }
         },
+
         rgbaToHsva: function (rgba) {
           var r = Math.min(rgba.r, 1), g = Math.min(rgba.g, 1), b = Math.min(rgba.b, 1), a = Math.min(rgba.a, 1);
           var max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -50,6 +53,7 @@
           }
           return {h: h, s: s, v: v, a: a};
         },
+
         hsvaToRgba: function (hsva) {
           var h = hsva.h, s = hsva.s, v = hsva.v, a = hsva.a;
           var r, g, b;
@@ -81,6 +85,7 @@
           }
           return {r: r, g: g, b: b, a: a};
         },
+
         stringToHsva: function (string) {
           //reg expressions https://github.com/jquery/jquery-color/
           var stringParsers = [
@@ -150,7 +155,16 @@
             }
           }
           return hsva;
+        },
+
+        isHexValid: function( str ) {
+          return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test( str );
+        },
+
+        trim: function ( str ) {
+          return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
         }
+
       };
     });
 
