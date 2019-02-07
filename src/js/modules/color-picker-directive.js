@@ -5,7 +5,7 @@
     .directive('colorPicker', ['$document', '$compile', 'ColorHelper', function ($document, $compile, ColorHelper) {
       return {
         restrict: 'A',
-        scope: {colorPickerModel: '=', colorPickerOutputFormat: '='},
+        scope: {colorPickerModel: '=', colorPickerOutputFormat: '=', colorPickerDisabled: '=?'},
 
         controller: ['$scope', function ($scope) {
           $scope.show = false;
@@ -350,6 +350,11 @@
 
           element.on('click', open);
           function open(event) {
+
+            if( scope.colorPickerDisabled === true ) {
+              return;
+            }
+
             initialValue = scope.colorPickerModel;
             scope.$apply(function () {
               scope.show = true;

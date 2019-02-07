@@ -26,6 +26,10 @@
                 $scope.var7 = '#008fff';
                 $scope.var8 = '#ff2e00';
                 $scope.var9 = '#e6ff00';
+
+                $scope.state = {
+                  disabled: true
+                };
             }]);
         </script>
         <div class="container" ng-app="app" ng-controller="AppCtrl">
@@ -101,6 +105,31 @@ color-picker-model="var"/&gt;
             </div>
             <div class="col-md-7">
               <p>Color Presets:</p>
+              <pre>
+&lt;input color-picker
+  color-picker-model="var"
+  color-picker-color-presets="#F00, #DDD, #0000FF, sdf"
+  color-picker-hex-only="true"
+  color-picker-show-cancel-button="true"
+  ng-style="{background:var}"//&gt;
+               </pre>
+            </div>
+          </div>
+
+
+          <hr>
+          <div class="row custom-parent">
+            <div class="col-md-5">
+              <input color-picker
+                     color-picker-model="var"
+                     color-picker-color-presets="#F00, #DDD, #0000FF, #8013a3, #7788e2, #84e277, #e2c477, #ff0, #8b8b63"
+                     color-picker-hex-only="true"
+                     color-picker-disabled="state.disabled"
+                     ng-style="{background:var, opacity: state.disabled ? '0.4' : '1'}"/>
+              <button ng-click="state.disabled = !state.disabled">Toggle</button>
+            </div>
+            <div class="col-md-7">
+              <p>Input disabled:</p>
               <pre>
 &lt;input color-picker
   color-picker-model="var"
