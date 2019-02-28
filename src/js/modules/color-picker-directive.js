@@ -237,7 +237,7 @@
 
           if( scope.colorPresets.length > 0 ) {scope.hasColorPresets = true;}
 
-          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}" ng-class="{ \'color-picker--hex-only\' : hexOnly, \'color-picker--has-color-presets\': hasColorPresets }">' +
+          template = angular.element('<div ng-show="show" class="color-picker {{extraLargeClass}}" ng-class="{ \'color-picker--hex-only\' : hexOnly, \'color-picker--has-color-presets\': hasColorPresets }" data-biq-clear-on-router-changes="true">' +
             '   <div class="arrow arrow-' + attr.colorPickerPosition + '"></div>' +
 
             '   <div slider rg-x=1 rg-y=1 action="setSaturationAndBrightness(s, v, rgX, rgY)" class="saturation-lightness" ng-style="{\'background-color\':hueSliderColor}">' +
