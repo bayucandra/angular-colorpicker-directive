@@ -101,9 +101,9 @@
             $scope.rgbaText = {r: rgba.r, g: rgba.g, b: rgba.b, a: Math.round(rgba.a * 100) / 100};
             $scope.hexText = '#' + ((1 << 24) | (parseInt(rgba.r, 10) << 16) | (parseInt(rgba.g, 10) << 8) | parseInt(rgba.b, 10)).toString(16).substr(1);
 
-            if ($scope.hexText[1] === $scope.hexText[2] && $scope.hexText[3] === $scope.hexText[4] && $scope.hexText[5] === $scope.hexText[6]) {
+/*            if ($scope.hexText[1] === $scope.hexText[2] && $scope.hexText[3] === $scope.hexText[4] && $scope.hexText[5] === $scope.hexText[6]) {
               $scope.hexText = '#' + $scope.hexText[1] + $scope.hexText[3] + $scope.hexText[5];
-            }
+            }*/
 
             $scope.alphaSliderColor = 'rgb(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ')';
             $scope.hueSliderColor = 'rgb(' + hueRgba.r + ',' + hueRgba.g + ',' + hueRgba.b + ')';
